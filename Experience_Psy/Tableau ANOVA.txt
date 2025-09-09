@@ -1,0 +1,68 @@
+
+
+Résultats : 
+Dans cette partie, nous présenterons les analyses statistiques réalisées pour tester nos hypothèses concernant l’impact de l’animation et de la valence émotionnelle sur la reconnaissance et l’évaluation émotionnelle des images. Les résultats sont exposés pour chaque hypothèse précédemment évoquée, sous forme de tableaux et de graphiques adaptés et accompagnés d’une interprétation détaillée. Les analyses de variance (ANOVA) permettent d’identifier les effets principaux et interactions entre les variables évaluées, en tenant compte de la variabilité individuelle des participants. 
+En admettant que le caractère animé ou fixe des images puisse avoir un impact sur les performances de reconnaissance d’images, il convient de réaliser une analyse de variance à mesure répétée afin de tester cette hypothèse. Au sein de cette analyse, le facteur principal testé est la condition d’animation des images (animées et/ou fixes), ce qui constitue un facteur intra-sujet, en d'autres termes chaque participant est exposé aux deux types d’images. Notre objectif est de déterminer si cette variable influence significativement les scores de reconnaissance. Cette première partie correspond à notre première hypothèse,
+
+Ensuite, nous réaliserons une analyse de variance à mesure répétée, pour notre seconde hypothèse, nous avons choisi d’intégrer la valence émotionnelle des images (par exemple, négative versus neutre) comme second facteur intra-sujet, afin d’évaluer si la valence influence les performances de reconnaissance et si une interaction existe entre la condition d’animation (animées et/ou fixes) et la valence émotionnelle. Pour cela, des tableaux et des graphiques seront présentés pour ces deux hypothèses, afin d'observer les différences statistiques entre les deux conditions.
+
+Les performances de reconnaissance des images ont été comparées entre les conditions animées et inanimées (Tableau 2 en Annexe 2). L’analyse de variance ( ANOVA à mesure répétée) nous montre qu’il n’y a pas d’effet de la condition (animée versus non-animée) sur les scores de reconnaissance des images (F(1,39) = 0,036, p = 0,85). 
+En conclusion, ces résultats nous montrent que le fait que l' image soit animée ou non n’a pas eu d’influence  sur la capacité des participants à les reconnaître. Ainsi, notre hypothèse selon laquelle les images animées seraient mieux reconnues que les images fixes n’est pas confirmée par ces données. 
+
+
+
+Graphique 3 : Comparaison des performances (en %) de reconnaissance entre images animées et images fixes
+
+Notre graphique présente le pourcentage moyen de réponses correctes lors de la tâche de reconnaissance, comparé entre deux conditions : images animées et images fixes. C’est une illustration de nos résultats précédents. On observe que les participants ont obtenu un taux de reconnaissance très élevé dans les deux conditions, avec 96% de réponses correctes pour les images animées et 95% pour les images fixes. Visuellement, les deux barres sont quasiment identiques, ce qui indique que la performance de reconnaissance est similaire, quel que soit le type d’images présenté. La différence observée en faveur des images animées est de 1%, ce qui n’est pas significatif, comme l’a confirmé notre analyse de variance (Tableau 2 : Annexe 2). Les écarts-types sont très faibles (SD = 0,21 pour les images animées et SD = 0,213 pour les images fixes), traduisant une faible dispersion des performances. 
+En résumé, ce graphique illustre clairement notre propos : le caractère animé ou fixe des images n’a pas eu d’impact sur leur reconnaissance par les participants.
+
+Nous supposons que, lors de l’évaluation émotionnelle des images, les participants jugeront les images animées comme étant plus intenses que les images fixes, avec des différences marquées en fonction de la valence émotionnelle (images négatives et/ou neutres). Voici l’analyse de variance réalisée pour tester cette hypothèse. Dans un premier temps, nous présenterons les résultats issus de l’ANOVA à deux facteurs concernant l’effet de l’animation et de la valence sur l’éveil perçu, c’est-à-dire sur le ressenti d’une image calme ou au contraire, excitante. Les effets principaux de l’animation et de la valence, ainsi que leur interaction, seront clairement expliqués. Ensuite, nous présenterons les résultats de la même manière pour le plaisir ressenti, c’est-à-dire sur le niveau de plaisir ou de déplaisir éprouvé par les participants face aux images neutres ou négatives. Enfin, l'ensemble des résultats sera présenté sous forme de graphique afin d’offrir une meilleure visibilité sur les différences potentielles et leur signification statistique. 
+
+
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Tableau 3 : Résultats de l’ANOVA sur les effets de l’animation et de la valence sur l’éveil perçu
+
+
+Notre analyse de variance à mesures répétées révèle plusieurs effets significatifs. 
+Premièrement, on observe un effet principal significatif du mouvement : les images animées sont reconnues différemment des images fixes  F(1,39) = 10,33, p = 0,0026). 
+Deuxièmement, on observe un effet principal très marqué de la valence émotionnelle, les images négatives et neutres étant reconnues de manière significativement différente (F(1,39) = 90,51, p = 0,0001)
+En revanche, l’interaction entre le mouvement et la valence n’est pas significative (F(1,39)=  1,15, p = 0,29), indiquant que l’effet du mouvement sur la tâche de reconnaissance ne dépend pas du caractère négatif ou neutre des images. 
+
+
+
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+
+
+Tableau 4 : Résultats de l’ANOVA sur les effets de l’animation et de la valence sur le plaisir ressenti
+
+Notre analyse de variance à mesures répétées au sujet du plaisir ressenti montre un effet principal très significatif de la valence émotionnelle des images (F(1,39) = 334,92, p < 0,0001). Cela signifie que les niveaux de plaisir ressentis diffèrent visiblement des images négatives et neutres. 
+En revanche, il n’y a pas d’effet significatif du mouvement (animé vs fixe) sur le plaisir ressenti (F(1,39) = 1,51, p = 0,227), ni d’interaction significative entre le mouvement et la valence (F(1,39) = 2,65, p = 0,111). Autrement dit, le fait qu’une image soit animée ou fixe n’a pas d’influence important sur le plaisir ressenti et l’effet de la valence ne dépend pas du type d’animation. 
+
+
+
+Graphique 4 : Distribution des scores pour l’intensité émotionnelle perçue selon l’animation et la valence
+Légende : 
+(—) représente la moyenne des scores
+(---) correspond au 2 ème quartile/médiane
+
+Dans ce graphique nous présentons les deux mesures de l’expérience dite “émotionnelle” de notre étude : 
+A gauche, nous avons l’éveil émotionnel (arousal) qui correspond au niveau d’intensité de l’émotion ressentie face à chaque image, qu’importe sa valence, c’est-à-dire que l’émotion soit neutre ou négative. Il s’agit du degré d’activation émotionnelle que le participant estime ressentir en visionnant une image, allant d’un état calme à excité (échelle SAM de 1 = calme à 9 = excité).
+A droite, c’est le plaisir ressenti (valence), qui correspond au caractère affectif (agréable ou désagréable) de l’émotion ressentie lors de la présentation de l’image. En d’autres termes, il s’agit de savoir si l’émotion est plutôt positive (agréable) ou négative (désagréable) (échelle SAM de 1 = désagréable/négatif à 9 = agréable/positif).
+Nos résultats montrent que : 
+L’éveil émotionnel (figure à gauche) : 
+Les images négatives (en rouge) provoquent un éveil émotionnel significativement plus élevé que les images neutres (en bleu), quel que soit le type d’animation (animée ou fixe).
+Les images animées semblent elles, légèrement augmenter l’éveil émotionnel par rapport aux images fixes, mais l'effet reste faible par rapport à l'effet de la valence.
+Plaisir ressenti (figure à droite) : 
+Les images neutres (en bleu) sont associées à un plaisir ressenti plus élevé que les images négatives (en rouge), et ce, dans les deux conditions d’animation. 
+Les médianes et les quartiles sont plus élevés pour les images neutres dans les deux conditions d’animation, ce qui nous permet de confirmer cette tendance.
+L’effet du type d’animation est présent, mais il est clairement moins marqué que l’effet de la valence émotionnelle. 
+
+
+En conclusion, nos analyses montrent que le caractère animé ou fixe des images n’a pas d’influence significative sur la reconnaissance (F(1, 39) = 0,036, p = 0,85). Notre hypothèse est partiellement validée : l’animation accroît l’intensité émotionnelle (éveil) indépendamment de la valence (F(1, 39) = 10,33, p = 0,0026), mais n’influence pas le plaisir ressenti (F(1, 39) = 1,51, p = 0,227). 
+Autrement dit, l’animation des images augmente significativement l’éveil émotionnel (scores plus élevés pour les images animées que fixes, quelle que soit la valence, comme le confirment les résultats de l’ANOVA et la distribution des scores sur le graphique. 
+En revanche, l’animation n’a pas d’effet significatif sur le plaisir ressenti : seuls les scores de valence (négative ou neutre) varient fortement, mais pas de différence entre images fixes et animées, ce qui est confirmé par l’analyse de variance.
+
+
+
+

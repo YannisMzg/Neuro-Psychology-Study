@@ -1,0 +1,176 @@
+# 0. Librairies
+library(tidyverse)
+
+# 1. Chemin vers votre dossier de CSV
+csv_dir <- here::here("data", "raw_data")
+
+# 2. Lister tous les fichiers CSV “_Emotion…csv” et filtrer ceux qui sont vides
+files <- list.files(
+  path       = csv_dir,
+  pattern    = "_Emotion.*\\.csv$",
+  full.names = TRUE
+)
+
+# retirer les fichiers de taille 0
+file_sizes <- file.info(files)$size
+files <- files[file_sizes > 0]
+
+# 3. La fonction de traitement inchangée
+process_data <- function(fp) {
+  pid <- str_extract(basename(fp), "\\d+(?=_Emotion)")
+  df2  <- read.csv(fp, header = TRUE, stringsAsFactors = FALSE)
+  
+  # si moins de 45 lignes, on skip
+  if (nrow(df2) < 45) {
+    stop("Moins de 45 lignes dans le fichier")
+  }
+  
+  df2 <- df2[1:42, ]
+  
+  df2 %>%
+    mutate(
+      participant   = pid,
+      condition     = case_when(
+        grepl("FIX", ImageFile, ignore.case = TRUE)     ~ "Fixed",
+        grepl("anim", ImageFile, ignore.case = TRUE) ~ "Animated",
+        TRUE                                                         ~ NA_character_
+      )
+    ) %>%
+    filter(!is.na(condition))
+}
+
+# 4. Appliquer à chaque fichier en capturant les erreurs
+df2_list <- map(files, function(fp) {
+  tryCatch(
+    process_data(fp),
+    error = function(e) {
+      warning(sprintf(
+        "→ Fichier '%s' ignoré : %s",
+        basename(fp), e$message
+      ))
+      return(NULL)
+    }
+  )
+})
+
+# 5. Empiler les data‐frames valides
+df2_all <- bind_rows(df2_list)
+
+
+### extraire le fichier 
+write.csv(df2_all,"df2_all.csv")
+
+# 2. Préparer les facteurs
+df2 <- df2_all %>%
+  mutate(
+    Animation = factor(condition, levels = c("Fixed", "Animated"),
+                       labels = c("Static", "Animated")),
+    Valence   = factor(ifelse(str_detect(ImageFile, regex("NEGA", ignore_case = TRUE)),
+                              "Negative", "Neutral"))
+  )
+
+# 3. Vérifier la structure des données
+table(df2$Animation, df2$Valence)
+
+# 4. ANOVA à mesures répétées 2x2 sur l’éveil émotionnel
+install.packages("ez")
+library(ez)
+
+res_aov <- ezANOVA(
+  data = df2,
+  dv = EVEIL.response,
+  wid = participant,
+  within = .(Animation, Valence),
+  type = 3,
+  detailed = TRUE,
+  return_aov = TRUE
+)
+print(res_aov)
+
+# 4. ANOVA 2×2 à mesures répétées sur le plaisir (Plaisir.response)
+aov_plaisir <- ezANOVA(
+  data = df2,
+  dv   = Plaisir.response,
+  wid  = participant,
+  within = .(Animation, Valence),
+  type = 3,
+  detailed = TRUE
+)
+print(aov_plaisir)
+
+# 5. Résumé graphique (optionnel)
+ggplot(df2, aes(x = Valence, y = EVEIL.response, color = Animation, group = Animation)) +
+  stat_summary(fun = mean, geom = "point", size = 3) +
+  stat_summary(fun = mean, geom = "line") +
+  stat_summary(fun.data = mean_se, geom = "errorbar", width = 0.2) +
+  labs(title = "Éveil émotionnel selon Animation et Valence",
+       y = "Note d'éveil (1–10)",
+       x = "Valence") +
+  theme_minimal()
+
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+
+# 1. Passage en “long” pour EVEIL et Plaisir
+df2_long <- df2 %>%
+  pivot_longer(
+    cols = c(EVEIL.response, Plaisir.response),
+    names_to  = "Measure",
+    values_to = "Score"
+  ) %>%
+  mutate(
+    Measure   = recode(Measure,
+                       "EVEIL.response"   = "Éveil émotionnel",
+                       "Plaisir.response" = "Plaisir ressenti"),
+    Valence   = factor(Valence, levels = c("Negative","Neutral")),
+    Animation = factor(Animation, levels = c("Static","Animated"),
+                       labels = c("Fixes","Animées"))
+  )
+
+# 2. Boxplots par Animation et Valence, facettés par Measure
+ggplot(df2_long, aes(x = Animation, y = Score, fill = Valence)) +
+  geom_boxplot(position = position_dodge(width = 0.8), width = 0.6) +
+  facet_wrap(~ Measure, scales = "free_y", ncol = 2) +
+  scale_fill_manual(
+    values = c("Negative" = "#E64B35", "Neutral" = "#4DBBD5"),
+    name   = "Valence"
+  ) +
+  labs(
+    title = "Distribution des scores par condition, animation et valence",
+    x     = "Animation des images",
+    y     = "Score (1–10)"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    plot.title      = element_text(hjust = 0.5, face = "bold"),
+    strip.text      = element_text(face = "bold", size = 12),
+    legend.position = "bottom"
+  )
+
+
+#Les ANOVA à mesures répétées montrent que l’animation des images augmente significativement 
+# l’éveil émotionnel (F(1,39)=10,33, p=0,0026) et que les images négatives suscitent un éveil 
+# supérieur aux images neutres (F(1,39)=90,51, p<0,001). En revanche, l’interaction 
+# Animation×Valence n’est pas significative pour l’éveil (F(1,39)=1,15, p=0,29), 
+# ce qui indique que l’effet d’animation sur l’intensité émotionnelle est comparable 
+# quelles que soient la valence de l’image. Pour la dimension plaisir, ni l’animation 
+# (F(1,39)=1,51, p=0,23) ni l’interaction Animation×Valence (F(1,39)=2,65, p=0,11) n’ont 
+# d’effet significatif, tandis que la valence influence fortement le plaisir (F(1,39)=334,92, 
+                                                                            #p<0,001), 
+# les images neutres étant jugées plus agréables que les images négatives. Cela valide 
+# partiellement votre hypothèse : l’animation accroît l’intensité émotionnelle en termes 
+# d’éveil, mais sans modulation spécifique selon la valence, et n’impacte pas le plaisir 
+# ressenti.
+
+# Le graphique montre deux profils distincts pour l’éveil (arousal) et le plaisir selon la valence (négative vs neutre) et le type d’image (statique vs animée) :
+# •	Éveil (gauche) :
+# •	Les images négatives suscitent un éveil beaucoup plus élevé que les images neutres, quel que soit le format.
+# •	Les images animées induisent un éveil légèrement supérieur aux images statiques (points bleus un peu au-dessus des rouges), ce qui confirme l’effet principal d’animation.
+# •	Les paires de lignes sont quasi parallèles : l’animation augmente l’éveil de façon similaire pour les images négatives et neutres (absence d’interaction).
+# •	Plaisir (droite) :
+# • Les images neutres reçoivent des notes de plaisir nettement supérieures aux images négatives.
+# •	Les courbes animée et statique sont presque superposées : aucun effet principal d’animation sur le plaisir et pas d’interaction avec la valence.
+
+#Conclusion :
+#  Votre hypothèse est partiellement validée : l’animation accroît l’intensité émotionnelle (éveil) indépendamment de la valence, mais n’influence pas le plaisir ressenti.
