@@ -61,6 +61,3 @@ Contact: via GitHub
 
 ***
 
-You can adapt the Gemini hypothesis description further if the focus or results have evolved with the new script.
-
-[1](https://github.com/YannisMzg/Neuro-Psychology-Study/new/main?filename=README.md)
