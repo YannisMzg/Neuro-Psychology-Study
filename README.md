@@ -1,4 +1,3 @@
-Here is the revised README in English, now accounting for the fact that **Hypothese_Gemini.R** replaces Hypothese 1:
 
 ***
 
